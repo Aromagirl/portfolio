@@ -58,7 +58,7 @@ Early exploration used AI-generated personas and simulated interviews to develop
 
 Maria is an AI-generated persona representing a working parent with limited shopping time and a need for affordable children's clothing.
 
-<figure class="research-figure ">
+<figure class="research-figure research-persona-preview">
 <img src="/images/projects/kidswearcycle/04.webp" alt="AI-generated Maria persona describing goals and frustrations around buying and selling children's clothing." width="959" height="540" />
 <figcaption>AI-generated persona &middot; Design hypothesis, not a research participant</figcaption>
 </figure>

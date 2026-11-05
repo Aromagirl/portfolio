@@ -9,7 +9,7 @@ expertise: [product-design, prototyping, quality-assurance]
 industries: [gaming]
 ---
 
-## About i-Jet Media & my role
+## About i-Jet Media
 
 <div class="tickeron-ui-intro">
 <div class="tickeron-ui-description">

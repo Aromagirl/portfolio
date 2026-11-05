@@ -27,7 +27,7 @@ const description = brand === 'SafeClick'
       const src = withBase(`${mediaPath}/brand-foundations/${file}`);
       return <figure class="brand-card">
         <a href={src} data-gallery-image data-title={`${brand} — ${topic.title}`} aria-label={`View ${brand}: ${topic.title}`}>
-          <img src={src} alt={`${brand} brand guidelines: ${topic.title}.`} width="1280" height="800" loading="lazy" decoding="async" />
+          <img src={src} alt={`${brand} brand guidelines: ${topic.title}.`} width="1280" loading="lazy" decoding="async" />
         </a>
         <figcaption><h4>{topic.title}</h4><p>{topic.description}</p></figcaption>
       </figure>;
@@ -42,10 +42,10 @@ const description = brand === 'SafeClick'
   .brand-heading p{margin-top:.75rem;color:var(--body);line-height:1.6}
   .brand-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;align-items:start}
   .brand-card{min-width:0;margin:0}
-  .brand-card a{display:block;aspect-ratio:8/5;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius-panel);background:var(--surface);cursor:zoom-in}
-  .brand-card img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
-  figcaption{margin-top:1rem}
-  h4{font-size:1rem;font-weight:600;color:var(--ink)}
+  .brand-card a{display:block;width:100%;max-height:36rem;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius-panel);background:var(--surface);cursor:zoom-in}
+  .brand-card img{display:block;width:100%;height:auto;object-fit:contain;object-position:top}
+  figcaption{margin-top:.75rem}
+  h4{font-size:.85rem;font-weight:600;color:var(--ink)}
   figcaption p{font-size:.875rem;line-height:1.5;color:var(--muted);margin-top:.35rem}
   .brand-document{margin-top:1.5rem}
   a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}

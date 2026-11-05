@@ -3,8 +3,8 @@ import { load } from 'cheerio';
 import manifest from '../../migration/manifest.json';
 import { contentAnchorAliases } from '../config/content-anchors';
 import { withBase } from '../utils/paths';
-interface Props { entryId: string; splitRole?: boolean; part?: 'overview' | 'case' }
-const { entryId, splitRole = false, part } = Astro.props;
+interface Props { entryId: string; splitRole?: boolean; part?: 'overview' | 'case'; caseLayout?: boolean }
+const { entryId, splitRole = false, part, caseLayout = false } = Astro.props;
 const $ = load(await Astro.slots.render('default'), {}, false);
 // One Markdown case can share the company header while keeping its full narrative below.
 if (part) {
@@ -68,12 +68,34 @@ if (splitRole) {
   const description = $('<section>').addClass('source-section company-description');
   const role = $('<section>').addClass('source-section company-responsibilities');
   let inRole = false;
+  const caseElements = [];
+  let inCase = false;
   for (const element of $.root().children().toArray()) {
+    if (caseLayout && !part && inRole && element.tagName === 'h2' && !/^My role\b/i.test($(element).text())) inCase = true;
+    if (inCase) { caseElements.push(element); continue; }
     if (/^h[2-3]$/.test(element.tagName) && /^My role\b/i.test($(element).text())) inRole = true;
     (inRole ? role : description).append(element);
   }
-  if (description.children().length) output.append(description);
-  if (role.children().length) output.append(role);
+  if (!caseLayout || part === 'overview') {
+    if (description.children().length) output.append(description);
+    if (role.children().length) output.append(role);
+  } else {
+    const intro = $('<div>').addClass('about-role-intro');
+    const heading = description.children('h2').first();
+    if (/^About\b/i.test(heading.text())) intro.append(heading);
+    const roleHeading = role.children('h2').first();
+    if (roleHeading.length) roleHeading.replaceWith($('<h3>').attr('id', roleHeading.attr('id') ?? '').html(roleHeading.html() ?? ''));
+    intro.append($('<div>').addClass('case-intro-columns').append(description, role));
+    output.append(intro);
+    let bodySection = $('<section>').addClass('source-section');
+    for (const element of caseElements) {
+      if (/^h[2-3]$/.test(element.tagName) && bodySection.children().length) {
+        output.append(bodySection); bodySection = $('<section>').addClass('source-section');
+      }
+      bodySection.append(element);
+    }
+    if (bodySection.children().length) output.append(bodySection);
+  }
 } else {
   let section = $('<section>').addClass('source-section');
   for (const element of $.root().children().toArray()) {
@@ -86,11 +108,18 @@ if (splitRole) {
   if (section.children().length) output.append(section);
 }
 // Keep the index after the complete introduction, before the case materials.
+const aboutIntro = output.find('.tickeron-ui-intro').first();
+const aboutHeading = aboutIntro.prevAll('h2').first();
+if (aboutIntro.length && /^About\b/i.test(aboutHeading.text())) {
+  const aboutBlock = $('<div>').addClass('about-role-intro');
+  aboutHeading.before(aboutBlock);
+  aboutBlock.append(aboutHeading, aboutIntro);
+}
 const index = await Astro.slots.render('index');
 if (index) {
   const intro = output.find('.tickeron-ui-intro').first();
-  if (intro.length) intro.after(index);
-  else if (splitRole) output.append(index);
+  if (intro.length) intro.closest('.about-role-intro').after(index);
+  else if (splitRole) output.children('.about-role-intro').first().after(index);
   else {
     const first = output.children('.source-section').first();
     if (/^About\b/i.test(first.children('h2').first().text())) first.after(index);

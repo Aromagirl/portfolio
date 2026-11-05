@@ -12,7 +12,7 @@ cardDisabled: false
 comparison: true
 ---
 
-## About FraudScore & my role
+## About FraudScore
 
 FraudScore is an independent ad fraud detection and prevention solution. Its website helps visitors explore the platform, compare plans, and learn about advertising fraud.
 

@@ -1,30 +1,34 @@
 ---
 interface Props {
-  image: { src: string; preview: string; label: string; mobile?: boolean };
+  image: { src: string; preview: string; label: string; mobile?: boolean; cropToGlossary?: boolean };
   version: string;
   project: string;
   featured?: boolean;
 }
 const { image, version, project, featured = false } = Astro.props;
 ---
-<figure class:list={['shot', { featured, mobile: image.mobile }]}>
-  <figcaption><span>{image.label}</span><span class="device">{image.mobile ? 'Mobile' : 'Desktop'}</span></figcaption>
+<figure class:list={['shot', { featured, mobile: image.mobile, 'crop-to-glossary': image.cropToGlossary }]}>
+
   <a class="shot-link" href={image.src} data-gallery-image data-title={`${version} — ${image.label}${image.mobile ? ' · Mobile' : ''}`} aria-label={`View full page: ${project}, ${version}, ${image.label}${image.mobile ? ', mobile' : ''}`}>
-    <div class="shot-window"><img src={image.preview} alt={`${project} — ${version}: ${image.label}${image.mobile ? ', mobile' : ''}`} loading="lazy" decoding="async" /></div>
-    <span class="shot-hint">View full page <span aria-hidden="true">↗</span></span>
+    <img src={image.src} alt={`${project} — ${version}: ${image.label}${image.mobile ? ', mobile' : ''}`} loading="lazy" decoding="async" />
+
   </a>
+  <figcaption><span>{image.label}</span><span class="device">{image.mobile ? 'Mobile' : 'Desktop'}</span></figcaption>
 </figure>
 <style>
-  .shot{margin:0;min-width:0;border:1px solid var(--line);border-radius:1rem;overflow:hidden;background:var(--surface);box-shadow:var(--shadow-card)}
-  figcaption{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:1rem 1.25rem;font-size:.9rem;color:var(--ink)}
-  .device{color:var(--muted);font-size:.75rem}
-  .shot-link{display:block;position:relative;cursor:zoom-in;border-top:1px solid var(--line);color:white}
-  .shot-window{aspect-ratio:4/3;overflow:hidden;background:var(--sunken)}
-  .featured .shot-window{aspect-ratio:16/10}
-  .mobile .shot-window{aspect-ratio:390/844}
-  img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
-  .shot-hint{position:absolute;inset:auto 0 0;display:flex;align-items:end;justify-content:space-between;padding:3rem 1.25rem 1rem;background:linear-gradient(transparent, rgb(0 0 0 / .7));font-size:.85rem}
-  .shot-link:hover .shot-hint{text-decoration:underline;text-underline-offset:4px}
-  .shot-link:focus-visible{outline:3px solid var(--ink);outline-offset:-4px}
-  @media(max-width:600px){figcaption{padding:.85rem 1rem}.shot-hint{padding-inline:1rem}}
+  .shot{margin:0;min-width:0;background:none;border:0;border-radius:0;box-shadow:none;overflow:visible;outline:0}
+  .shot.mobile{width:100%}
+  @media(max-width:600px){.shot.mobile{width:50%}}
+  figcaption{margin-top:.75rem;font-size:.85rem;line-height:1.5;color:var(--muted);text-align:left}
+  .device::before{content:' · '}
+  .shot-link{display:block;width:100%;max-height:36rem;cursor:zoom-in;border:1px solid var(--line);border-radius:var(--radius-panel);overflow:hidden;background:var(--surface)}
+  img{display:block;width:100%;height:auto;object-fit:contain;object-position:top}
+  .crop-to-glossary .shot-link{aspect-ratio:1920/5715}
+  .crop-to-glossary img{height:100%;object-fit:cover;object-position:top}
+  @media(min-width:601px){
+    .featured{display:grid;grid-template-rows:subgrid;grid-row:span 2}
+    .featured.mobile .shot-link{position:relative;min-height:0}
+    .featured.mobile img{position:absolute;inset:0;height:100%;object-fit:cover;object-position:top}
+  }
+  .shot-link:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 </style>

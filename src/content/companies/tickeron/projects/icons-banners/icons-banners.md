@@ -10,7 +10,7 @@ expertise: [visual-design, marketing-design]
 industries: [fintech]
 ---
 
-## About Tickeron & my role
+## About Tickeron
 
 <div class="tickeron-ui-intro">
 <div class="tickeron-ui-description">

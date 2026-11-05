@@ -11,7 +11,7 @@ industries: [adtech]
 cardDisabled: false
 ---
 
-## About FraudScore Platform & my role
+## About FraudScore Platform
 
 <div class="tickeron-ui-intro">
 <div class="tickeron-ui-description">
@@ -67,11 +67,11 @@ The demo request form introduces the product and collects account details, with 
 </figure>
 
 <figure class="tickeron-ui-figure platform-figure ">
-<a class="image-link" href="/images/projects/fraudscore/fraudscore-platform/previews/asset-33.webp" aria-label="Open image: Upper portion of the tablet demo request page."><img src="/images/projects/fraudscore/fraudscore-platform/previews/crop-33.webp" alt="Upper portion of the tablet demo request page." width="700" height="850" /></a>
-<figcaption>Request a demo &middot; Tablet preview</figcaption>
+<a class="image-link" href="/images/projects/fraudscore/fraudscore-platform/previews/asset-33.webp" aria-label="Open image: Complete tablet demo request page."><img src="/images/projects/fraudscore/fraudscore-platform/previews/asset-33.webp" alt="Complete tablet demo request page." width="700" height="1828" /></a>
+<figcaption>Request a demo &middot; Tablet</figcaption>
 </figure>
 <figure class="tickeron-ui-figure platform-figure ">
-<a class="image-link" href="/images/projects/fraudscore/fraudscore-platform/previews/asset-31.webp" aria-label="Open image: Upper portion of the mobile demo request page."><img src="/images/projects/fraudscore/fraudscore-platform/previews/crop-31.webp" alt="Upper portion of the mobile demo request page." width="412" height="850" /></a>
+<a class="image-link" href="/images/projects/fraudscore/fraudscore-platform/previews/asset-31.webp" aria-label="Open image: Complete mobile demo request page."><img src="/images/projects/fraudscore/fraudscore-platform/previews/asset-31.webp" alt="Mobile demo request page, cropped in the preview to match the tablet height." width="412" height="2248" /></a>
 <figcaption>Request a demo &middot; Mobile preview</figcaption>
 </figure>
 </div>

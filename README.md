@@ -72,7 +72,7 @@ Google / Coursera · 2024
 Общий компонент: `src/components/theme/CompanyOverview.astro`.
 
 - Вверху отображаются название, логотип при наличии и краткое описание.
-- Блок About … & my role содержит описание слева и роль справа.
+- Блок About … содержит описание слева и роль справа.
 - Колонка роли начинается с заголовка `## My role …`.
 - На узких экранах колонки располагаются друг под другом.
 
@@ -94,7 +94,7 @@ Mafia Game использует такой же верх страницы, бе�
 
 Файлы направлений автоматически появляются на обзорной странице родительского проекта. Их адрес: `/work/<project-slug>/<section-slug>/`.
 
-В SafeClick Website и FraudScore Website описание проекта и изменений находится слева, а список `## My role as Product Designer:` — справа; на телефоне блоки идут друг под другом. Заголовок `## About … & my role` относится к левой колонке. Внизу всех направлений кнопка Explore more work ведёт в `/work/`.
+В SafeClick Website и FraudScore Website описание проекта и изменений находится слева, а список `## My role as Product Designer:` — справа; на телефоне блоки идут друг под другом. Заголовок `## About …` относится к левой колонке. Внизу всех направлений кнопка Explore more work ведёт в `/work/`.
 
 В SafeClick Website и FraudScore Website включены галереи Before / After (`comparison: true`). Скриншоты кладите в папки `before/` и `after/` рядом с Markdown проекта: `src/content/companies/fraudscore/projects/safeclick-website/` или `src/content/companies/fraudscore/projects/fraudscore-website/`. Поддерживаются PNG, JPG, JPEG, WebP, AVIF, GIF и SVG. Изображения подхватываются автоматически при сборке, в локальном dev — при обновлении страницы.
 
@@ -236,3 +236,15 @@ Sitemap: `/portfolio/sitemap.xml`. В него входят главная, оп
 В GitHub Settings → Pages → Source должен быть выбран GitHub Actions. Workflow `.github/workflows/deploy.yml` использует Node.js 24 и публикует сайт из `main`. Push в `dev` публикацию не запускает. Ручной запуск workflow также публикует только ветку `main`.
 
 Публикация выполняется после отдельного разрешения; локальная сборка сайт не публикует.
+
+
+### Единый дизайн кейсов
+
+Страницы кейсов автоматически используют `src/components/CaseContent.astro` и `src/styles/case-design.css` через общие маршруты Work. Индивидуальные размеры уже настроенных изображений сохраняются.
+
+- Новый самостоятельный кейс: `templates/project.template.md`.
+- Новый раздел компании: `templates/work-section.template.md`.
+- Порядок: заголовок страницы, About и роль, On this page, материалы, результаты.
+- About и оглавление выравниваются по основному заголовку; материалы занимают колонку 64rem, текст выровнен влево.
+- Изображения в `figure` получают тонкую рамку, подпись снизу и ссылку на полный размер. `case-preview-small` ограничивает ширину; `case-gallery` и `case-gallery-three` создают адаптивные сетки.
+- Исключения для конкретного проекта добавляются отдельно от общих правил. Общие переменные стилей управляют оформлением существующих и будущих кейсов.

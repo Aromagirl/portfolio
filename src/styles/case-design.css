@@ -1,0 +1,33 @@
+/* Default design for every case, including new Markdown pages. */
+:root {
+  --case-width: 64rem;
+  --case-text-width: 48rem;
+  --case-preview-small: 38rem;
+  --case-grid-gap: 1.5rem;
+  --case-section-gap: 3rem;
+}
+.case-shell{container-type:inline-size}
+.source-content.case-body{max-width:var(--case-width);margin-inline:auto}
+.case-body.work-section-content{padding-top:2rem}
+.case-body .about-role-intro>h2{margin-top:0;margin-bottom:1.25rem}
+.case-body>.source-section{margin-bottom:var(--case-section-gap)}
+.case-body .source-section :is(p,h2,h3,h4,ul,ol){max-width:var(--case-text-width);margin-inline:0;text-align:left}
+.case-body .about-role-intro,.case-body .case-index{width:100cqw;max-width:none;margin-inline:calc((100% - 100cqw)/2)}
+.case-body .case-intro-columns{display:grid;gap:2rem;margin-bottom:2rem}
+.case-body .case-intro-columns .source-section{min-width:0;margin:0}
+.case-body .case-intro-columns .company-responsibilities>h3{font-size:1.3rem;line-height:1.3;margin-top:0}
+.case-body .case-intro-columns p:first-child{margin-top:0}
+.case-body figure{min-width:0;margin:2rem 0 var(--case-section-gap)}
+.case-body figure .case-media{display:block}
+.case-body figure .image-link{display:block;cursor:zoom-in;border:1px solid var(--line);border-radius:var(--radius-panel);overflow:hidden;background:var(--surface)}
+.case-body figure img{display:block;width:100%;height:auto;border-radius:0}
+.case-body figcaption{font-size:.85rem;line-height:1.5;color:var(--muted);margin-top:.75rem;text-align:left}
+.case-body .case-preview-small{max-width:var(--case-preview-small)}
+.case-body .case-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--case-grid-gap);align-items:start;margin-block:2rem var(--case-section-gap)}
+.case-body .case-gallery-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.case-body .case-gallery>figure{margin:0}
+.case-body .case-details{margin-block:2rem}
+.case-body .case-details>summary{cursor:pointer;width:fit-content;min-height:44px;padding:.75rem 1.25rem;border:1px solid var(--line-strong);border-radius:1.5rem}
+.case-body a:focus-visible,.case-body summary:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+@media(min-width:900px){.case-body .case-intro-columns{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:3rem;align-items:start}}
+@media(max-width:767px){.case-body .case-gallery{grid-template-columns:minmax(0,1fr)}}

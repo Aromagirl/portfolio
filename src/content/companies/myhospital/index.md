@@ -63,7 +63,7 @@ Interviews, empathy maps and journey mapping helped identify the difficulty of a
 
 Victoria is a mother of two with a busy work schedule. She needs a quick way to book an appointment when phone operators are unavailable.
 
-<figure class="research-figure ">
+<figure class="research-figure research-persona-preview">
 <img src="/images/projects/myhospital/04.webp" alt="Victoria persona with goals, frustrations and a family appointment booking scenario." width="959" height="540" />
 <figcaption>Research persona &middot; Victoria</figcaption>
 </figure>

@@ -7,6 +7,7 @@ import { withBase } from '../../utils/paths';
 import CaseHeading from '../../components/theme/CaseHeading.astro';
 import CompanyOverview from '../../components/theme/CompanyOverview.astro';
 import MarkdownBody from '../../components/MarkdownBody.astro';
+import CaseContent from '../../components/CaseContent.astro';
 import CaseIndex from '../../components/CaseIndex.astro';
 import { getWorkSections } from '../../utils/work';
 export async function getStaticPaths() {
@@ -26,11 +27,11 @@ const contents = headings.filter(h => h.depth === 2 && h.text !== project.data.t
       {project.filePath?.endsWith('.md') ? <MarkdownBody entryId={project.id} splitRole={splitRole} part={sections.length === 0 ? 'overview' : undefined}><Content /></MarkdownBody> : <Content components={{ img: CaseImage, a: ContentLink }} />}
     </CompanyOverview> : <>
     <CaseIndex headings={contents} />
-    <article class="prose source-content case-content" data-source-content><Content components={{ img: CaseImage, a: ContentLink, h2: CaseHeading }} /></article>
+    <CaseContent class="prose source-content case-content" data-source-content><Content components={{ img: CaseImage, a: ContentLink, h2: CaseHeading }} /></CaseContent>
     </>}
     {splitRole && sections.length === 0 && contents.some(h => !/^My role\b/i.test(h.text)) && <>
       <CaseIndex headings={contents} />
-      <article class:list={['prose', 'source-content', 'case-content', { 'research-case': ['myhospital', 'kidswearcycle', 'myhospital-app', 'kidswearcycle-website'].includes(project.data.slug) }]} data-source-content><MarkdownBody entryId={project.id} part="case"><Content /></MarkdownBody></article>
+      <CaseContent class:list={['prose', 'source-content', 'case-content', { 'research-case': ['myhospital', 'kidswearcycle', 'myhospital-app', 'kidswearcycle-website'].includes(project.data.slug) }]} data-source-content><MarkdownBody entryId={project.id} part="case"><Content /></MarkdownBody></CaseContent>
     </>}
   </div>
 </BaseLayout>

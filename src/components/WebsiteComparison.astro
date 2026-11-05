@@ -12,7 +12,6 @@ const pageOrder = mediaPath.endsWith('/safeclick-website')
   : ['home', 'pricing', 'event-analytics', 'blog', 'blog-article', 'calculator', 'industries', 'glossary', 'glossary-term'];
 const labels: Record<string, string> = { home: 'Homepage', registration: 'Early access', 'event-analytics': 'Event Analytics', blog: 'Blog', 'blog-article': 'Blog article', compare: 'Product comparison', 'design-partners': 'Design Partners', 'glossary-term': 'Glossary term' };
 const versions = await Promise.all([
-  { folder: 'before', title: 'Before', description: 'The previous website', number: '01' },
   { folder: 'after', title: 'After', description: 'The redesigned website', number: '02' },
 ].map(async version => {
   let files;
@@ -33,6 +32,7 @@ const versions = await Promise.all([
     const full = name === desktop ? find('homepage-desktop-full') ?? name : name === mobile ? find('homepage-mobile-full') ?? name : name;
     return {
       key, label, mobile: name === mobile,
+      cropToGlossary: mediaPath.endsWith('/safeclick-website') && key === 'design-partners',
       src: withBase(`${mediaPath}/${version.folder}/${encodeURIComponent(full)}`),
       preview: withBase(`${mediaPath}/${version.folder}/.previews/${encodeURIComponent(name)}.webp`),
     };
@@ -44,17 +44,12 @@ const versions = await Promise.all([
 }));
 ---
 <div class="website-comparison" data-website-gallery>
-  <nav class="comparison-nav" aria-label="Website versions">
-    {versions.map(version => <a href={`#${version.folder}`}><span>{version.number}</span>{version.title}<span aria-hidden="true">↓</span></a>)}
-  </nav>
   {versions.map(version => (
-    <section id={version.folder} class:list={['version', { 'version-after': version.folder === 'after', 'version-before': version.folder === 'before' }]} aria-labelledby={`${version.folder}-title`}>
-      <header class="version-heading">
-        <div class="version-title"><span class="version-number" aria-hidden="true">{version.number}</span><h2 id={`${version.folder}-title`}>{version.title}</h2></div>
-        <p>{version.description}</p>
-      </header>
+    <section id={version.folder} class:list={['version', { 'version-after': version.folder === 'after', 'version-before': version.folder === 'before' }]} aria-label="Website design">
       {version.folder === 'after' && <BrandFoundations filePath={filePath} title={title} mediaPath={mediaPath} />}
+      {version.featured.length > 0 && <h2 id="homepage" class="screens-heading">Homepage</h2>}
       {version.featured.length > 0 && <div class:list={['featured-shots', { responsive: version.featured.some(image => image.mobile) }]}>{version.featured.map(image => <ScreenshotPreview image={image} version={version.title} project={title} featured />)}</div>}
+      {version.pages.length > 0 && <h2 id="website-pages" class="screens-heading">Website Pages</h2>}
       {version.pages.length > 0 && <div class="page-grid">{version.pages.map(image => <ScreenshotPreview image={image} version={version.title} project={title} />)}</div>}
       {!version.featured.length && !version.pages.length && <div class="empty-gallery"><p>Screenshots coming soon</p></div>}
     </section>
@@ -119,7 +114,8 @@ const versions = await Promise.all([
   });
 </script>
 <style>
-  .website-comparison{padding-block:1rem 2rem}
+  .website-comparison{max-width:64rem;margin-inline:auto;padding-block:1rem 2rem}
+  .screens-heading{font-size:var(--text-title);font-style:normal;margin:2rem 0 1.5rem}
   .comparison-nav{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:3.5rem}
   .comparison-nav a{display:flex;align-items:center;gap:1rem;border:1px solid var(--line-strong);border-radius:999px;padding:.75rem 1.25rem;color:var(--ink);font-size:.95rem;text-decoration:none;min-height:44px}
   .comparison-nav a:hover{background:var(--sunken)}
@@ -130,10 +126,9 @@ const versions = await Promise.all([
   .version-title{display:flex;align-items:center;gap:1rem}
   .version-number{display:grid;place-items:center;width:2.5rem;height:2.5rem;border:1px solid var(--accent);border-radius:50%;font-size:.8rem;background:var(--accent);color:var(--on-accent)}
   h2{font-size:clamp(1.75rem,4vw,2.5rem);line-height:1.15;letter-spacing:-.03em;color:var(--ink)}
-  .version-after h2{font-style:italic}
   .version-heading p{color:var(--muted);font-size:.95rem}
   .featured-shots{display:grid;gap:1.5rem;margin-bottom:2rem;align-items:start}
-  .featured-shots.responsive{grid-template-columns:minmax(0,1fr) minmax(0,25%)}
+  .featured-shots.responsive{grid-template-columns:minmax(0,3fr) minmax(0,1fr);grid-template-rows:auto auto;row-gap:0}
   .page-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
   .version-before .featured-shots{max-width:48rem}
   .version-before .page-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:64rem}
@@ -154,5 +149,5 @@ const versions = await Promise.all([
   .viewer-scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;background:var(--sunken)}
   .viewer-image{display:block;width:100%;height:auto;margin-inline:auto}
   .viewer-image.is-mobile{width:390px;max-width:100%}
-  @media(max-width:600px){.comparison-nav{margin-bottom:2.5rem}.version+.version{margin-top:3rem}.page-grid,.featured-shots.responsive{grid-template-columns:minmax(0,1fr)}.featured-shots.responsive :global(.mobile){width:min(100%,22rem);justify-self:center}.gallery-dialog{width:100%;height:100dvh;border:0;border-radius:0}.viewer-toolbar{flex-wrap:wrap;gap:.25rem;padding:.65rem}.viewer-title{width:100%;font-size:.85rem}.viewer-controls{width:100%}.viewer-controls [data-viewer-close]{margin-left:auto}.viewer-controls a{padding-inline:.4rem}}
+  @media(max-width:600px){.comparison-nav{margin-bottom:2.5rem}.version+.version{margin-top:3rem}.page-grid,.featured-shots.responsive{grid-template-columns:minmax(0,1fr)}.gallery-dialog{width:100%;height:100dvh;border:0;border-radius:0}.viewer-toolbar{flex-wrap:wrap;gap:.25rem;padding:.65rem}.viewer-title{width:100%;font-size:.85rem}.viewer-controls{width:100%}.viewer-controls [data-viewer-close]{margin-left:auto}.viewer-controls a{padding-inline:.4rem}}
 </style>

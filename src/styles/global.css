@@ -523,7 +523,7 @@
 .case-shell{padding-top:3rem}
 .case-breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem;color:var(--muted);font-size:.9rem}
 .case-breadcrumb a:hover{text-decoration:underline}
-  .case-index{margin-top:1.5rem;border-block:1px solid var(--line);padding-block:1rem;color:var(--body);font-size:.9rem}
+  .case-index{max-width:none;margin-top:1.5rem;border-block:1px solid var(--line);padding-block:1rem;color:var(--body);font-size:.9rem}
   .source-content .case-index{grid-column:1/-1;margin-bottom:2rem}
   .source-content .case-index a{font-size:.9rem;text-decoration:none;font-weight:400}
 .case-index summary{cursor:pointer;width:fit-content}
@@ -634,6 +634,7 @@ body{background-image:radial-gradient(ellipse at 95% 0%,color-mix(in srgb,var(--
   .research-case .research-figure figcaption{font-size:.85rem;color:var(--muted);line-height:1.5;margin-top:.75rem}
   .research-case .research-hero{max-width:40rem}
   .research-case .research-portrait{max-width:34rem}
+  .research-case .research-persona-preview{max-width:38rem}
   .research-case .research-paper-preview .image-link{width:fit-content;max-width:100%}
   .research-case .research-paper-preview img{width:auto;max-width:100%;max-height:20rem;margin-inline:0}
   .research-case .research-figure .image-link:has(img[src$="/kidswearcycle/11.webp"]){width:fit-content;max-width:100%}
@@ -646,6 +647,7 @@ body{background-image:radial-gradient(ellipse at 95% 0%,color-mix(in srgb,var(--
   .research-case .research-details>summary{cursor:pointer;width:fit-content;padding:.75rem 1.25rem;min-height:44px;border:1px solid var(--line-strong);border-radius:1.5rem}
   @media(max-width:767px){.research-case .research-sketches{grid-template-columns:minmax(0,1fr)}}
   .source-content.tickeron-ui-content{max-width:64rem;margin-inline:auto}
+  .section-shell .about-role-intro,.section-shell .source-content .case-index{width:100cqw;margin-inline:calc((100% - 100cqw)/2)}
   .platform-case .platform-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;align-items:start;margin:2rem 0 3rem}
   .platform-case .platform-smart-reject{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
   .platform-case .platform-smart-reject.platform-grid .image-link{aspect-ratio:1531/1000;padding:0}
@@ -659,6 +661,11 @@ body{background-image:radial-gradient(ellipse at 95% 0%,color-mix(in srgb,var(--
   .platform-case .platform-device-grid{grid-template-columns:minmax(0,2.2fr) minmax(0,1.25fr) minmax(0,.8fr);max-width:64rem}
   .platform-case .platform-device-grid .image-link{aspect-ratio:auto;width:fit-content;max-width:100%;padding:0}
   .platform-case .platform-device-grid img{width:auto;height:auto;max-width:100%;max-height:28rem}
+  .platform-case .platform-device-grid .image-link:has(img[src$="/asset-33.webp"]){width:100%}
+  .platform-case .platform-device-grid img[src$="/asset-33.webp"]{width:100%;height:auto;max-height:none}
+  .platform-case .platform-device-grid .image-link:has(img[src$="/asset-31.webp"]){width:100%;aspect-ratio:112/457;position:relative}
+  .platform-case .platform-device-grid img[src$="/asset-31.webp"]{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:cover;object-position:top}
+  @media(max-width:767px){.platform-case .platform-device-grid .image-link:has(img[src$="/asset-31.webp"]){aspect-ratio:700/1828}}
   .platform-case .platform-form-preview{max-width:30rem}
   .platform-case .platform-full-screens .image-link{aspect-ratio:auto;padding:0}
   .platform-case .platform-full-screens img{height:auto}
@@ -673,6 +680,10 @@ body{background-image:radial-gradient(ellipse at 95% 0%,color-mix(in srgb,var(--
   .ijet-content .ijet-mobile-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;max-width:42rem;align-items:start}
   .ijet-content .ijet-mobile-pair img{max-height:30rem}
   .ijet-content .ijet-desktop{max-width:46rem}
+  .ijet-content .ijet-exploration-preview{max-width:38rem}
+  .ijet-content .ijet-spec-preview{max-width:52.25rem}
+  .ijet-content .ijet-spec-preview .image-link{width:100%}
+  .ijet-content .ijet-spec-preview img{width:100%;height:auto}
   @media(max-width:767px){
     .ijet-content .ijet-games,.ijet-content .ijet-pair,.ijet-content .ijet-mobile-pair{grid-template-columns:minmax(0,1fr)}
   }
@@ -689,7 +700,8 @@ body{background-image:radial-gradient(ellipse at 95% 0%,color-mix(in srgb,var(--
   .tickeron-ui-content .tickeron-ui-figure img{display:block;width:100%;height:auto;border-radius:0}
   .tickeron-ui-content .tickeron-ui-figure figcaption{margin-top:.75rem;font-size:.85rem;line-height:1.5;color:var(--muted);text-align:left}
   .tickeron-ui-content .tickeron-ui-hero{max-width:36rem}
-  .tickeron-ui-content .tickeron-ui-icons{max-width:52rem}
+  .tickeron-ui-content .tickeron-landing-preview{max-width:40rem}
+  .tickeron-ui-content .tickeron-ui-icons{max-width:38rem}
   .tickeron-ui-content .tickeron-ui-banners{max-width:38rem}
   .tickeron-ui-content :is(.tickeron-ui-role,.tickeron-ui-hint){font-size:.9rem;color:var(--muted)}
   .tickeron-ui-content .tickeron-ui-overview{margin:2rem 0 3rem}

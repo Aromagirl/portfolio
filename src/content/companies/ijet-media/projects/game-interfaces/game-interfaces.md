@@ -9,7 +9,7 @@ expertise: [ux-research, prototyping, quality-assurance, marketing-design, digit
 industries: [gaming]
 ---
 
-## About i-Jet Media & my role
+## About i-Jet Media
 
 <div class="tickeron-ui-intro">
 <div class="tickeron-ui-description">
@@ -51,7 +51,7 @@ Social games combine accessible gameplay and short sessions with long-term progr
 
 The process began with game design specifications, reference analysis and discussion of technical constraints. Paper layouts helped explore the main screens, logical relationships and navigation before detailed layouts were prepared.
 
-<figure class="tickeron-ui-figure ">
+<figure class="tickeron-ui-figure ijet-exploration-preview">
 <img src="/images/projects/ijet-media/game-interfaces/08.webp" alt="Annotated paper layouts exploring game navigation, panels and screen relationships." width="1216" height="887" />
 <figcaption>Early exploration &middot; Screens, navigation and interaction notes</figcaption>
 </figure>

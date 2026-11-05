@@ -12,7 +12,7 @@ cardDisabled: false
 comparison: true
 ---
 
-## About SafeClick & my role
+## About SafeClick
 
 SafeClick helps advertisers understand the quality of their website traffic and identify invalid clicks. Its website introduces the product, explains its capabilities, and lets visitors explore pricing and request early access.
 

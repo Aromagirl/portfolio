@@ -10,7 +10,7 @@ expertise: [visual-design, marketing-design]
 industries: [fintech]
 ---
 
-## About Tickeron & my role
+## About Tickeron
 
 <div class="tickeron-ui-intro">
 <div class="tickeron-ui-description">
@@ -34,12 +34,12 @@ Landing pages introducing portfolio allocation and AI-powered portfolio review. 
 
 <p class="tickeron-ui-hint">Select any image to view it in full size.</p>
 
-<figure class="tickeron-ui-figure ">
+<figure class="tickeron-ui-figure tickeron-landing-preview">
 <img src="/images/projects/tickeron/landing-pages/13.webp" alt="Desktop and mobile landing page designs for portfolio allocation, including a growth chart and calls to action." width="846" height="958" />
 <figcaption>Portfolio allocation &middot; Desktop and mobile</figcaption>
 </figure>
 
-<figure class="tickeron-ui-figure ">
+<figure class="tickeron-ui-figure tickeron-landing-preview">
 <img src="/images/projects/tickeron/landing-pages/14.webp" alt="Desktop and mobile landing page designs for an AI-powered portfolio review, with a portfolio score graphic." width="836" height="860" />
 <figcaption>AI portfolio review &middot; Desktop and mobile</figcaption>
 </figure>
@@ -48,12 +48,12 @@ Landing pages introducing portfolio allocation and AI-powered portfolio review. 
 
 Two approaches to presenting Tickeron's market analysis tools: a page explaining AI trend predictions and a focused introduction to the Trend Search Engine.
 
-<figure class="tickeron-ui-figure ">
+<figure class="tickeron-ui-figure tickeron-landing-preview">
 <img src="/images/projects/tickeron/landing-pages/15.webp" alt="Desktop and mobile landing page designs presenting AI market trend predictions." width="838" height="720" />
 <figcaption>Market trend predictions &middot; Desktop and mobile</figcaption>
 </figure>
 
-<figure class="tickeron-ui-figure ">
+<figure class="tickeron-ui-figure tickeron-landing-preview">
 <img src="/images/projects/tickeron/landing-pages/16.webp" alt="Desktop and mobile landing page designs for the Trend Search Engine, with chart graphics and a product call to action." width="846" height="598" />
 <figcaption>Trend Search Engine &middot; Desktop and mobile</figcaption>
 </figure>

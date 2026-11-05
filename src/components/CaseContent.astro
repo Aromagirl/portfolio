@@ -1,0 +1,6 @@
+---
+import '../styles/case-design.css';
+interface Props { class?: string }
+const { class: className } = Astro.props;
+---
+<article class:list={['prose', 'source-content', 'case-body', className]} data-source-content><slot /></article>

@@ -20,7 +20,7 @@ const redirects = sections.flatMap(section => workSectionAnchors(section).map(an
   {project.data.role && !splitRole && <p class="company-role"><span>My role</span> {project.data.role}</p>}
 </header>
 <section class="company-context" data-project={project.data.slug === 'myhospital-app' ? 'myhospital' : project.data.slug === 'kidswearcycle-website' ? 'kidswearcycle' : project.data.slug} aria-labelledby="company-context-title">
-  <h2 id="company-context-title" class="text-title text-ink">About {project.data.title} &amp; my role</h2>
+  <h2 id="company-context-title" class="text-title text-ink">About {project.data.title}</h2>
   <div class:list={['prose', 'source-content', 'company-context-content', { 'company-context-columns': splitRole, 'company-context-plain': project.filePath?.endsWith('.md') }]} data-source-content><slot /></div>
 </section>
 {sections.length > 0 && <section class="company-work" aria-labelledby="company-work-title">
