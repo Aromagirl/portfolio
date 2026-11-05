@@ -17,6 +17,12 @@ const content = await prepareContentImages(await Astro.slots.render('default'), 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-PJ927TXR"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
