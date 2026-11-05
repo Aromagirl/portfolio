@@ -1,7 +1,7 @@
 ---
 title: "Tickeron"
 logo: "/images/projects/tickeron/01.webp"
-summary: "Financial Marketplace"
+summary: "UI design for Tickeron's financial marketplace, covering platform interfaces, responsive landing pages, feature icons and promotional banners."
 sourceUrl: "https://sites.google.com/view/natalia-isakova/uxui-design/tickeron"
 status: "published"
 featured: true

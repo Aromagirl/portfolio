@@ -11,6 +11,7 @@ import { insertedContentAnchorIds } from '../../../config/content-anchors';
 import ContentLink from '../../../components/ContentLink.astro';
 import { withBase } from '../../../utils/paths';
 import { getWorkSections, projectPath, workSectionPath, workSectionAnchors } from '../../../utils/work';
+import { isSectionIndexable } from '../../../utils/seo';
 export async function getStaticPaths() {
   const sections = await getCollection('workSections');
   return Promise.all(sections.map(async section => {
@@ -39,7 +40,7 @@ const contents = [
   ] : []),
 ];
 ---
-<BaseLayout title={`${section.data.title} - ${project.data.title}`} description={section.data.summary}>
+<BaseLayout title={`${section.data.title} - ${project.data.title}`} description={section.data.summary} noindex={!isSectionIndexable(section, project)}>
   <div class:list={['shell', 'case-shell', 'section-shell', { 'social-page': section.data.slug === 'social-media-blog' }]}>
     <nav class="case-breadcrumb" aria-label="Breadcrumb">
       <a href={withBase('/work/')}>Work</a><span aria-hidden="true">/</span>

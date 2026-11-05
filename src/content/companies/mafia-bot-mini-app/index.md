@@ -1,6 +1,6 @@
 ---
 title: "Mafia Game"
-summary: "Telegram Bot & Mini App"
+summary: "Product design exploration for a Mafia game in Telegram, connecting player journeys, game states and a mobile Mini App interface."
 status: "placeholder"
 featured: true
 slug: "mafia-bot-mini-app"

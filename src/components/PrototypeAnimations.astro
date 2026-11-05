@@ -1,0 +1,17 @@
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-animation]').forEach(button => {
+    button.addEventListener('click', () => {
+      const image = button.nextElementSibling?.matches('img') ? button.nextElementSibling as HTMLImageElement : button.nextElementSibling?.querySelector('img');
+      if (!image) return;
+      const play = button.getAttribute('aria-pressed') !== 'true';
+      image.removeAttribute('srcset');
+      image.src = (play ? button.dataset.animation : button.dataset.poster)!;
+      button.setAttribute('aria-pressed', String(play));
+      button.textContent = play ? 'Pause prototype animation' : 'Play prototype animation';
+    });
+  });
+</script>
+<style is:global>
+  .animation-toggle{font:inherit;font-size:.85rem;padding:10px 16px;min-height:44px;border:1px solid var(--line-strong);border-radius:999px;color:var(--ink);background:var(--sunken);cursor:pointer;margin-block:8px}
+  .animation-toggle:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+</style>

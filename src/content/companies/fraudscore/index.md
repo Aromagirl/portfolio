@@ -2,7 +2,7 @@
 title: "FraudScore"
 logo: "/images/projects/fraudscore/01.webp"
 slug: "fraudscore"
-summary: "FraudScore — fraud detection & prevention solution"
+summary: "Product and visual design for FraudScore: traffic analytics interfaces, responsive websites, presentations and marketing materials for ad fraud prevention."
 cover: "/images/projects/fraudscore/cover.png"
 fillCover: true
 companyId: "fraudscore"

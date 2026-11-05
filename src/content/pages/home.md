@@ -1,6 +1,6 @@
 ---
 title: "Natalia Isakova"
-summary: "Product Designer & Builder"
+summary: "Explore Natalia Isakova's product and UX/UI design portfolio: analytics platforms, responsive websites, mobile interfaces and visual communication."
 sourceUrl: "https://sites.google.com/view/natalia-isakova"
 status: "published"
 featured: true

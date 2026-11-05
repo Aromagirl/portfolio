@@ -10,6 +10,7 @@ import MarkdownBody from '../../components/MarkdownBody.astro';
 import CaseContent from '../../components/CaseContent.astro';
 import CaseIndex from '../../components/CaseIndex.astro';
 import { getWorkSections } from '../../utils/work';
+import { isProjectIndexable } from '../../utils/seo';
 export async function getStaticPaths() {
   const projects = await getCollection('projects', ({ data }) => !data.casePage);
   return projects.map(project => ({ params: { id: project.data.slug }, props: { project } }));
@@ -20,7 +21,7 @@ const sections = await getWorkSections(project);
 const splitRole = Boolean(project.filePath?.endsWith('.md') && /^#{2,3} My role\b/im.test(project.body ?? ''));
 const contents = headings.filter(h => h.depth === 2 && h.text !== project.data.title && /\p{L}/u.test(h.text));
 ---
-<BaseLayout title={project.data.title} description={project.data.summary}>
+<BaseLayout title={project.data.title} description={project.data.summary} noindex={!isProjectIndexable(project)}>
   <div class="shell case-shell">
     <nav class="case-breadcrumb" aria-label="Breadcrumb"><a href={withBase('/work/')}>Work</a><span aria-hidden="true">/</span><span aria-current="page">{project.data.title}</span></nav>
     {sections.length > 0 || splitRole ? <CompanyOverview project={project} sections={sections} splitRole={splitRole}>

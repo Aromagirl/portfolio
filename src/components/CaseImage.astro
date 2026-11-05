@@ -12,19 +12,3 @@ const eager = src === '/images/projects/home/01.webp';
   {animated && !disabled && <button class="animation-toggle" type="button" data-animation={withBase(src)} data-poster={withBase(poster)} aria-pressed="false">Play prototype animation</button>}
   <ImageLink class="image-link" href={disabled ? undefined : withBase(src)} aria-label={disabled ? undefined : `Open image: ${alt}`}><img src={withBase(poster)} alt={alt} width={asset && 'outputWidth' in asset ? asset.outputWidth : undefined} height={asset && 'outputHeight' in asset ? asset.outputHeight : undefined} loading={eager ? 'eager' : 'lazy'} decoding="async" /></ImageLink>
 </span>
-<script>
-  document.querySelectorAll<HTMLButtonElement>('.animation-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-      const image = button.parentElement?.querySelector('img');
-      if (!image) return;
-      const play = button.getAttribute('aria-pressed') !== 'true';
-      image.src = (play ? button.dataset.animation : button.dataset.poster)!;
-      button.setAttribute('aria-pressed', String(play));
-      button.textContent = play ? 'Pause prototype animation' : 'Play prototype animation';
-    });
-  });
-</script>
-<style>
-  .animation-toggle{font:inherit;font-size:.85rem;padding:10px 16px;border:1px solid var(--line-strong);border-radius:999px;color:var(--ink);background:var(--sunken);cursor:pointer;margin-block:8px}
-  .animation-toggle:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
-</style>

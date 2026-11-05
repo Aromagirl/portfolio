@@ -3,6 +3,7 @@ import { copyFile, mkdir, readdir, stat, writeFile } from 'node:fs/promises';
 import { extname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { previewCache } from '../utils/image-previews.mjs';
 
 const mime = { '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.svg': 'image/svg+xml', '.avif': 'image/avif' };
 const mediaMime = { ...mime, '.pdf': 'application/pdf' };
@@ -34,6 +35,17 @@ export default function projectImages() {
           try { pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname); }
           catch { return next(); }
           if (base && pathname.startsWith(base + '/')) pathname = pathname.slice(base.length);
+          if (/^\/images\/previews\/[a-f0-9]{24}\.webp$/.test(pathname) && ['GET', 'HEAD'].includes(request.method)) {
+            try {
+              const file = join(previewCache, pathname.split('/').at(-1));
+              const info = await stat(file);
+              response.setHeader('Content-Type', 'image/webp');
+              response.setHeader('Content-Length', info.size);
+              response.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+              if (request.method === 'HEAD') return response.end();
+              return createReadStream(file).on('error', error => response.destroy(error)).pipe(response);
+            } catch (error) { if (error.code !== 'ENOENT') return next(error); return next(); }
+          }
           const match = pathname.match(/^\/(images|documents)\/projects\/([a-z0-9-]+)\/(.+)$/);
           if (!match || !['GET', 'HEAD'].includes(request.method)) return next();
           const extension = extname(match[3]).toLowerCase();
@@ -67,6 +79,13 @@ export default function projectImages() {
         });
       },
       'astro:build:done': async ({ dir }) => {
+        try {
+          const destination = join(fileURLToPath(dir), 'images', 'previews');
+          await mkdir(destination, { recursive: true });
+          for (const name of await readdir(previewCache)) {
+            if (/^[a-f0-9]{24}\.webp$/.test(name)) await copyFile(join(previewCache, name), join(destination, name));
+          }
+        } catch (error) { if (error.code !== 'ENOENT') throw error; }
         async function copyMedia(source, target, documentTarget, recursive = false) {
           for (const entry of await readdir(source, { withFileTypes: true })) {
             if (entry.isDirectory() && recursive) {

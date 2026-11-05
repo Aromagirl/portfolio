@@ -8,6 +8,7 @@ import CompanyOverview from '../components/theme/CompanyOverview.astro';
 import MarkdownBody from '../components/MarkdownBody.astro';
 import EditablePage from '../components/EditablePage.astro';
 import { getWorkSections } from '../utils/work';
+import { isProjectIndexable } from '../utils/seo';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages', ({ id, data }) => id !== 'home' && data.status === 'published');
@@ -26,7 +27,7 @@ const project = legacyProject ?? (await getCollection('projects')).find(project 
 const sections = project ? await getWorkSections(project) : [];
 const splitRole = Boolean(project?.filePath?.endsWith('.md') && /^#{2,3} My role\b/im.test(project?.body ?? ''));
 ---
-<BaseLayout title={project?.data.title ?? page.data.title} description={project?.data.summary ?? page.data.summary}>
+<BaseLayout title={project?.data.title ?? page.data.title} description={project?.data.summary ?? page.data.summary} noindex={project ? !isProjectIndexable(project) : page.data.status !== 'published'}>
   <div class:list={['shell', { 'case-shell': sections.length > 0 }]}>
   {project && sections.length > 0 ? <>
     <nav class="case-breadcrumb" aria-label="Breadcrumb"><a href={withBase('/work/')}>Work</a><span aria-hidden="true">/</span><span aria-current="page">{project.data.title}</span></nav>

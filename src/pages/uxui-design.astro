@@ -1,7 +1,7 @@
 ---
 import { withBase } from '../utils/paths';
 const destination = withBase('/work/?expertise=ui-design');
-const canonical = new URL(destination, Astro.site);
+const canonical = new URL(withBase('/work/'), Astro.site);
 ---
 <!doctype html>
 <html lang="en">

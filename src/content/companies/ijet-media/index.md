@@ -1,6 +1,6 @@
 ---
 title: "I-Jet Media"
-summary: "Online Games"
+summary: "UX design for i-Jet Media's social games: game interfaces, mobile adaptations, interaction specifications and developer handoff."
 sourceUrl: "https://sites.google.com/view/natalia-isakova/uxui-design/ijet-media"
 status: "published"
 featured: true

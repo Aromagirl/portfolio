@@ -8,7 +8,7 @@ const entry = await getEntry('pages', 'home');
 if (!entry) throw new Error('Homepage content is missing');
 const { Content } = await render(entry);
 ---
-<BaseLayout title="Natalia Isakova" home>
+<BaseLayout title="Natalia Isakova" description={entry.data.summary} home>
   <div class="shell home-content" data-source-content><EditablePage page="home"><Content /></EditablePage>{entry.data.homeProjects.map(project => <HomeProjectCard {...project} />)}</div>
   <div class="shell mt-12 flex flex-wrap gap-3"><a class="btn btn-primary" href={withBase('/work/')}>Explore all work →</a><a class="btn btn-ghost" href={withBase('/about/')}>About me</a></div>
 </BaseLayout>

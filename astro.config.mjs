@@ -14,6 +14,7 @@ export default defineConfig({
     '/work/myhospital/': '/portfolio/work/myhospital-app/',
     '/work/kidswearcycle/': '/portfolio/work/kidswearcycle-website/',
   },
+  // Project media integration also serves the generated lightweight image previews.
   integrations: [mdx(), projectImages()],
   markdown: { processor: satteri({ features: { smartPunctuation: false } }) },
   vite: { plugins: [tailwindcss()] },

@@ -3,6 +3,7 @@ project: "company-slug"
 slug: "section-slug"
 title: "Case title"
 summary: "What the work covers and who it helps."
+status: "draft"
 cover: null
 order: 0
 expertise: []

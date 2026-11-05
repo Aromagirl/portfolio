@@ -1,6 +1,6 @@
 ---
 title: "About me"
-summary: "Interactive and graphic designer"
+summary: "Meet Natalia Isakova, a multidisciplinary product and UX/UI designer with over 10 years of experience in digital products, visual communication and team leadership."
 sourceUrl: "https://sites.google.com/view/natalia-isakova/about-me"
 status: "published"
 featured: true

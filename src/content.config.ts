@@ -40,6 +40,7 @@ const projectSchema = z.object({
 });
 
 const workSectionSchema = z.object({
+  status: z.enum(['draft', 'published']).default('published'),
   comparison: z.boolean().default(false),
   project: reference('projects'),
   slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),

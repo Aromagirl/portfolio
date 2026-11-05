@@ -2,6 +2,7 @@ import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
 import { projectPath, workSectionPath } from '../utils/work';
 import { withBase } from '../utils/paths';
+import { isProjectIndexable, isSectionIndexable } from '../utils/seo';
 
 export const GET: APIRoute = async ({ site }) => {
   const projects = await getCollection('projects');
@@ -9,11 +10,11 @@ export const GET: APIRoute = async ({ site }) => {
   const pages = await getCollection('pages', ({ data }) => data.status === 'published');
   const routes = new Set([
     '/', '/work/',
-    ...projects.map(projectPath),
-    ...sections.map(section => {
+    ...projects.filter(isProjectIndexable).map(projectPath),
+    ...sections.flatMap(section => {
       const project = projects.find(project => project.id === section.data.project.id);
       if (!project) throw new Error(`Missing project for ${section.id}`);
-      return workSectionPath(project, section);
+      return isSectionIndexable(section, project) ? [workSectionPath(project, section)] : [];
     }),
     ...pages.map(page => page.id === 'home' ? '/' : `/${page.id === 'about-me' ? 'about' : page.id}/`),
   ]);

@@ -4,9 +4,14 @@ import { withBase } from '../utils/paths';
 import SiteHeader from '../components/theme/SiteHeader.astro';
 import SiteFooter from '../components/theme/SiteFooter.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
-interface Props { title: string; description?: string; home?: boolean }
+import PrototypeAnimations from '../components/PrototypeAnimations.astro';
+import { prepareContentImages } from '../utils/image-previews.mjs';
+interface Props { title: string; description?: string; home?: boolean; noindex?: boolean }
 const previewImage = new URL(withBase('/images/brand/site-preview.png'), Astro.site).href;
-const { title, description = 'Product Designer & Builder — Natalia Isakova', home = false } = Astro.props;
+const { title, description = 'Product and UX/UI design portfolio by Natalia Isakova, featuring digital platforms, responsive websites and mobile interfaces.', home = false, noindex = false } = Astro.props;
+const pageTitle = home ? 'Natalia Isakova — Product & UX/UI Designer' : `${title} — Natalia Isakova`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const content = await prepareContentImages(await Astro.slots.render('default'), import.meta.env.BASE_URL);
 ---
 <!doctype html>
 <html lang="en">
@@ -17,20 +22,24 @@ const { title, description = 'Product Designer & Builder — Natalia Isakova', h
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#F3F1E9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#151817" media="(prefers-color-scheme: dark)" />
-    <title>{title === 'Natalia Isakova' ? title : `${title} — Natalia Isakova`}</title>
-    <meta property="og:title" content={title} />
+    <title>{pageTitle}</title>
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Natalia Isakova" />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={previewImage} />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1730" />
     <meta property="og:image:height" content="909" />
-    <meta property="og:image:alt" content="Natalia Isakova ? Product Designer & Builder" />
+    <meta property="og:image:alt" content="Natalia Isakova — Product Designer & Builder" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={previewImage} />
-    <meta name="twitter:image:alt" content="Natalia Isakova ? Product Designer & Builder" />
+    <meta name="twitter:image:alt" content="Natalia Isakova — Product Designer & Builder" />
     <link rel="icon" href={withBase('/favicon.svg?v=ni-3')} type="image/svg+xml" />
     <link rel="preload" href={withBase('/fonts/hanken-grotesk/hanken-grotesk-latin.woff2')} as="font" type="font/woff2" crossorigin />
     <script is:inline>
@@ -62,8 +71,9 @@ const { title, description = 'Product Designer & Builder — Natalia Isakova', h
   <body class="flex min-h-screen flex-col">
     <a class="skip-link" href="#main">Skip to content</a>
     <SiteHeader />
-    <main id="main" class:list={['flex-1', { 'home-page': home }]}><slot /></main>
+    <main id="main" class:list={['flex-1', { 'home-page': home }]}><Fragment set:html={content} /></main>
     <SiteFooter />
     <ScrollReveal />
+    <PrototypeAnimations />
   </body>
 </html>
