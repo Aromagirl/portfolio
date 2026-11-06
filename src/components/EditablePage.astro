@@ -96,7 +96,12 @@ output.find('.about-certifications > div').each((_, element) => {
 });
 output.find('a').each((_, element) => {
   const link = $(element);
-  if (link.text().trim() === 'Email me') link.removeClass('btn-primary').addClass('btn btn-ghost');
+  if (link.text().trim() === 'Email me') {
+    link.removeClass('btn-primary').addClass('btn btn-ghost');
+    if (link.attr('href') === '#contact') {
+      link.attr('data-contact-cta', link.closest('header').length ? 'hero' : 'about_page');
+    }
+  }
 });
 const html = output.html() ?? '';
 ---
