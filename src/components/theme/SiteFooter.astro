@@ -25,7 +25,7 @@ const year = new Date().getFullYear();
         </h2>
         <p class="mt-6 max-w-xl text-lead text-night-muted">{closing.text}</p>
         <div class="mt-10 flex flex-wrap items-center gap-3">
-          <a class="btn btn-accent" href={`mailto:${email}`}>
+          <a class="btn btn-accent" href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
             {email}
             <Icon name="arrow-up-right" class="icon-nudge-diagonal size-4" />
           </a>
@@ -70,7 +70,7 @@ const year = new Date().getFullYear();
       </nav>
 
       <ul class="footer-contact" aria-label="Contact links">
-        <li><a class="footer-link" href={`mailto:${email}`}>{email}<Icon name="arrow-up-right" class="size-3.5" /></a></li>
+        <li><a class="footer-link" href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">{email}<Icon name="arrow-up-right" class="size-3.5" /></a></li>
         {siteConfig.socials.map((social) => (
           <li>
             <a class="footer-link" href={social.href} rel="me noopener">
