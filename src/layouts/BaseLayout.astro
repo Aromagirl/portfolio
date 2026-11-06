@@ -23,6 +23,23 @@ const content = await prepareContentImages(await Astro.slots.render('default'), 
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     </script>
+    <script is:inline>
+      (() => {
+        // Keep one delegated listener even if this script runs again.
+        if (window.portfolioContactTrackingInitialized) return;
+        window.portfolioContactTrackingInitialized = true;
+
+        document.addEventListener('click', (event) => {
+          if (!(event.target instanceof Element)) return;
+          const link = event.target.closest('a[href]');
+          if (!link || !/^mailto:/i.test(link.getAttribute('href').trim())) return;
+          if (typeof window.gtag !== 'function') return;
+
+          // Do not send the link URL or text: both can contain an email address.
+          window.gtag('event', 'contact_click');
+        });
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
