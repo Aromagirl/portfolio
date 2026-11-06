@@ -35,9 +35,24 @@ const content = await prepareContentImages(await Astro.slots.render('default'), 
           if (!link) return;
           if (typeof window.gtag !== 'function') return;
 
+          // Count explicit CTA activations, never scrolling or loading a contact anchor.
+          if (link.dataset.contactCta && link.getAttribute('href') === '#contact') {
+            window.gtag('event', 'contact_cta_click', {
+              cta_location: link.dataset.contactCta,
+              page_path: window.location.pathname,
+            });
+            return;
+          }
+
           // Do not send the link URL or text: both can contain an email address.
           if (/^mailto:/i.test(link.getAttribute('href').trim())) {
             window.gtag('event', 'contact_click');
+            return;
+          }
+
+          // Track only Natalia's profile, not other LinkedIn pages or profiles.
+          if (/^https:\/\/(?:www\.)?linkedin\.com\/in\/ux-natalia-isakova\/?(?:[?#]|$)/i.test(link.href)) {
+            window.gtag('event', 'linkedin_click', { link_url: link.href });
             return;
           }
 
