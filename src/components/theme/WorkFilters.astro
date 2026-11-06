@@ -18,7 +18,7 @@ const groups = workTagGroups.map(group => ({
         <legend>{group.label}</legend>
         <div class="filter-options">
           {group.tags.map(tag => <label>
-            <input type="checkbox" name={group.id} value={tag.id} aria-controls="work-results" />
+            <input type="checkbox" name={group.id} value={tag.id} aria-controls="work-results" data-filter-name={tag.label} data-filter-group={group.label} />
             <span>{tag.label}</span><span class="tag-count">{tag.count}</span>
           </label>)}
         </div>

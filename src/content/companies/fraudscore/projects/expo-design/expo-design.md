@@ -56,7 +56,7 @@ Printed materials introducing FraudScore's approach to ad fraud detection and su
 </div>
 
 <div class="expo-document" data-document>
-<a href="/documents/projects/fraudscore/expo-design/polygraphy/brochure.pdf" target="_blank" rel="noopener" aria-label="View the 2018 brochure PDF in a new tab">View 2018 brochure (PDF)</a>
+<a data-project-pdf="FraudScore" href="/documents/projects/fraudscore/expo-design/polygraphy/brochure.pdf" target="_blank" rel="noopener" aria-label="View the 2018 brochure PDF in a new tab">View 2018 brochure (PDF)</a>
 </div>
 
 <div class="expo-grid expo-business-cards">

@@ -20,6 +20,8 @@ The redesign brings the key pages into a consistent visual system, replacing the
 
 The scope includes the desktop and mobile homepage, Pricing, Early access, and Glossary, alongside Product comparison and Design Partners pages that support product evaluation.
 
+<a href="https://safeclick.io/" target="_blank" rel="noopener noreferrer" data-project-name="SafeClick">Visit safeclick.io ↗</a>
+
 ## My role as Product Designer:
 
 - 🔍   Analysis of existing design and architecture

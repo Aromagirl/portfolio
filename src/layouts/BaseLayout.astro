@@ -25,18 +25,64 @@ const content = await prepareContentImages(await Astro.slots.render('default'), 
     </script>
     <script is:inline>
       (() => {
-        // Keep one delegated listener even if this script runs again.
+        // Keep one set of delegated listeners even if this script runs again.
         if (window.portfolioContactTrackingInitialized) return;
         window.portfolioContactTrackingInitialized = true;
 
         document.addEventListener('click', (event) => {
           if (!(event.target instanceof Element)) return;
           const link = event.target.closest('a[href]');
-          if (!link || !/^mailto:/i.test(link.getAttribute('href').trim())) return;
+          if (!link) return;
           if (typeof window.gtag !== 'function') return;
 
           // Do not send the link URL or text: both can contain an email address.
-          window.gtag('event', 'contact_click');
+          if (/^mailto:/i.test(link.getAttribute('href').trim())) {
+            window.gtag('event', 'contact_click');
+            return;
+          }
+
+          // Only explicitly marked project PDFs qualify, not unrelated documents.
+          const pdfProject = link.dataset.projectPdf;
+          if (pdfProject) {
+            const url = new URL(link.href);
+            if (!['https:', 'http:'].includes(url.protocol) || !/\.pdf$/i.test(url.pathname)) return;
+            if (url.username || url.password) return;
+            url.search = '';
+            url.hash = '';
+            window.gtag('event', 'project_pdf_open', {
+              project_name: pdfProject,
+              file_name: decodeURIComponent(url.pathname.split('/').pop()),
+              link_url: url.href,
+            });
+            return;
+          }
+
+          // Only explicitly marked project destinations qualify, never all outbound links.
+          const projectName = link.dataset.projectName;
+          if (!projectName) return;
+          const url = new URL(link.href);
+          if (!['https:', 'http:'].includes(url.protocol) || url.origin === window.location.origin) return;
+          if (url.username || url.password) return;
+          // Query strings and fragments can contain personal or session data.
+          url.search = '';
+          url.hash = '';
+          window.gtag('event', 'project_external_click', {
+            project_name: projectName,
+            project_url: url.href,
+          });
+        });
+
+        document.addEventListener('change', (event) => {
+          // URL restoration and programmatic changes must not count as user choices.
+          if (!event.isTrusted || !(event.target instanceof HTMLInputElement)) return;
+          const input = event.target;
+          if (!input.matches('[data-work-filters] input[type="checkbox"][data-filter-name][data-filter-group]')) return;
+          if (typeof window.gtag !== 'function') return;
+          window.gtag('event', 'project_filter', {
+            filter_name: input.dataset.filterName,
+            filter_group: input.dataset.filterGroup,
+            filter_action: input.checked ? 'select' : 'deselect',
+          });
         });
       })();
     </script>

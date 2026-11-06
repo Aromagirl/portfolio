@@ -33,7 +33,7 @@ const description = brand === 'SafeClick'
       </figure>;
     })}
   </div>
-  <a class="btn btn-ghost brand-document" href={withBase(`${mediaPath.replace('/images/projects/', '/documents/projects/')}/${encodeURIComponent(pdf)}`)} target="_blank" rel="noopener" aria-label={`Open the full ${brand} brand system PDF in a new tab`}>View full brand system · PDF ↗</a>
+  <a class="btn btn-ghost brand-document" data-project-pdf={brand} href={withBase(`${mediaPath.replace('/images/projects/', '/documents/projects/')}/${encodeURIComponent(pdf)}`)} target="_blank" rel="noopener" aria-label={`Open the full ${brand} brand system PDF in a new tab`}>View full brand system · PDF ↗</a>
 </section>}
 <style>
   .brand-foundations{margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line)}

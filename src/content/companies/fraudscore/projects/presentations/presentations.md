@@ -45,7 +45,7 @@ A light visual style combines bold typography, prominent figures and colour-code
     <h3>Explore the full presentation</h3>
     <p>11 slides · PDF · 13.9 MB</p>
   </div>
-  <a class="btn btn-primary" href="/documents/projects/fraudscore/presentations/fraudscore-2025.pdf" target="_blank" rel="noopener" aria-label="View full 2025 presentation, PDF, opens in a new tab">View full presentation · PDF ↗</a>
+  <a class="btn btn-primary" data-project-pdf="FraudScore" href="/documents/projects/fraudscore/presentations/fraudscore-2025.pdf" target="_blank" rel="noopener" aria-label="View full 2025 presentation, PDF, opens in a new tab">View full presentation · PDF ↗</a>
 </section>
 
 <hr class="presentation-divider" />
@@ -85,5 +85,5 @@ Charts, comparisons and product visuals support the story, from the scale of adv
     <h3>Explore the full presentation</h3>
     <p>21 slides · PDF · 2.8 MB</p>
   </div>
-  <a class="btn btn-primary" href="/documents/projects/fraudscore/presentations/fraudscore-2018.pdf" target="_blank" rel="noopener" aria-label="View full 2018 presentation, PDF, opens in a new tab">View full presentation · PDF ↗</a>
+  <a class="btn btn-primary" data-project-pdf="FraudScore" href="/documents/projects/fraudscore/presentations/fraudscore-2018.pdf" target="_blank" rel="noopener" aria-label="View full 2018 presentation, PDF, opens in a new tab">View full presentation · PDF ↗</a>
 </section>

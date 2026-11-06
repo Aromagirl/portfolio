@@ -20,6 +20,8 @@ The redesign connects product and educational content through a consistent visua
 
 The scope includes the desktop and mobile homepage, Pricing, Event Analytics, Blog, and article pages. The calculator, industry page, and glossary provide additional ways to explore the product and its use cases.
 
+<a href="https://fraudscore.ai/" target="_blank" rel="noopener noreferrer" data-project-name="FraudScore">Visit fraudscore.ai ↗</a>
+
 ## My role as Product Designer:
 
 - 🔍   Analysis of existing design and architecture

@@ -21,7 +21,7 @@ For investors and those interested in learning more about investing in the stock
 
 For advisors and thought leaders in the investment community, Tickeron provides a platform on which you can share, broadcast, and/or sell your ideas. You can connect with clients or users seeking advice and use online tools to manage your relationships.
 
-[Tickeron](https://tickeron.com/)
+<a href="https://tickeron.com/" data-project-name="Tickeron">Tickeron</a>
 
 ## My role as UI Designer:
 
